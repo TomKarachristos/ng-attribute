@@ -8,9 +8,8 @@ app.directive('ngAttrs', function($compile) {
     restrict: 'A',
     link: function(scope, element, attr ) {
 
-      scope.$watch( attr['ngAttrs'] , function (newAttrs) {
+      scope.$watch( attr['ngAttrs'] , function (newAttrs,oldValue) {
         addAttributes(getAttributes(newAttrs));
-        compile();
       }, true);
 
       function getAttributes(newAttrs) {
@@ -36,8 +35,9 @@ app.directive('ngAttrs', function($compile) {
         angular.forEach(attrsToAdd, function(attrValue, attrName) {
           element.attr(attrName, attrValue);
         });
+
       }
-      
+
     }
   }
 });
