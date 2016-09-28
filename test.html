@@ -1,0 +1,14 @@
+<html>
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		<script src="test.js"></script>
+	</head>
+	<body ng-app="myApp" ng-controller="myCtrl">
+		<form name="form">
+			<input name="input" ng-model="model" ng-attrs="{ 'ng-pattern=/0-9/': isWorking}" >
+			<input type="submit" id="submit" value="Submit" />
+			<hr>
+			input valid = {{form.input.$valid}}
+		</form>
+	</body>
+</html>
