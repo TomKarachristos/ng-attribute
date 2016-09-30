@@ -1,0 +1,30 @@
+{
+  "name": "ng-attribute",
+  "version": "0.0.1",
+  "description": "",
+  "main": "test.js",
+  "dependencies": {
+    "karma-jasmine": "^1.0.2",
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.3.0"
+  },
+  "devDependencies": {
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.3.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-jasmine": "^1.0.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TomKarachristos/ng-attribute.git"
+  },
+  "author": "Tom Karachristos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TomKarachristos/ng-attribute/issues"
+  },
+  "homepage": "https://github.com/TomKarachristos/ng-attribute#readme"
+}

@@ -1,0 +1,20 @@
+{
+  "name": "ng-attribute",
+  "description": "",
+  "main": "test.js",
+  "authors": [
+    "Tom Karachristos"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/TomKarachristos/ng-attribute",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "angularjs#^1.5.8"
+  }
+}
