@@ -1,6 +1,11 @@
 var app = angular.module('myApp', []);
+
 app.controller('myCtrl', function($scope) {
-    $scope.isWorking = true;
+    $scope.isCorporate = true;
+
+    $scope.changeState = function(){
+      $scope.isCorporate = !$scope.isCorporate ;
+    };
 });
 
 app.directive('ngAttrs', function($compile) {
@@ -8,38 +13,29 @@ app.directive('ngAttrs', function($compile) {
     restrict: 'A',
     link: function(scope, element, attr ) {
 
-      attr.$observe( 'ngAttrs' , function (newAttrs) {
-        addAttributes(getAttributes(newAttrs));
-      });
-
-      function getAttributes(newAttrs) {
-        var attrsToAdd = {};
-
+      scope.$watch( attr.ngAttrs , function (newAttrs,oldvalue) {
         if (angular.isObject(newAttrs)) {
           angular.forEach(newAttrs, function(attrValue, attrName) {
             if (typeof attrValue === "boolean") {
               var fullAttribute = attrName.split('=');
+              var name = fullAttribute[0];
+              var value = fullAttribute[1];
               if (attrValue) {
-                attrsToAdd[fullAttribute[0]] = fullAttribute[1];
+                attr.$set(name, value);
+              } else{
+                element.removeAttr(fullAttribute[0]);
               }
             }
           });
+          $compile(element)(scope);
         } else {
-        	console.warn("no object in ng-attrs");
+          console.warn("no object in ng-attrs");
         }
+      }, true);
 
-        return attrsToAdd;
-      }
-
-      function addAttributes(attrsToAdd) {
-        angular.forEach(attrsToAdd, function(attrValue, attrName) {
-          element.attr(attrName, attrValue);
-        });
-
-      }
+      element.removeAttr('ng-attrs');
 
     }
   };
 });
-
 

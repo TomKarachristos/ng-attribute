@@ -7,8 +7,17 @@
 	</head>
 	<body ng-app="myApp" ng-controller="myCtrl">
 		<form name="form">
-			<input name="input" ng-model="model" ng-attrs="{ 'ng-pattern=/0-9/': isWorking}" >
-			<input type="submit" id="submit" value="Submit" />
+			<input name="FIRSTINPUT" 
+			       ng-model = "model2" >
+			<input name="SECONDINPUT" 
+			       ng-model = "model" 
+			       ng-pattern = "/[0-9]/" 
+						 ng-attrs = "{ 'type=number': isCorporate}" >
+			<input type="submit"
+						 id="submit"
+						 ng-click="changeState()"
+						 value="Submit" >
+						 
 			<hr>
 			input valid = {{form.input.$valid}}
 		</form>
