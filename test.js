@@ -11,30 +11,42 @@ app.controller('myCtrl', function($scope) {
 app.directive('ngAttrs', function($compile) {
   return {
     restrict: 'A',
-    link: function(scope, element, attr ) {
+    priority: 1000,
+    terminal: true,
+    link: function (scope, element, attr ) {
 
-      scope.$watch( attr.ngAttrs , function (newAttrs,oldvalue) {
-        if (angular.isObject(newAttrs)) {
-          angular.forEach(newAttrs, function(attrValue, attrName) {
-            if (typeof attrValue === "boolean") {
-              var fullAttribute = attrName.split('=');
-              var name = fullAttribute[0];
-              var value = fullAttribute[1];
-              if (attrValue) {
-                attr.$set(name, value);
-              } else{
-                element.removeAttr(fullAttribute[0]);
-              }
-            }
-          });
-          $compile(element)(scope);
+      scope.$watch( attr.ngAttrs , function (new_attrs) {
+        if (angular.isObject(new_attrs)) {
+          angular.forEach(new_attrs, set_attributes );
+          // TODO check if need before do compile
+          compileElement();
         } else {
           console.warn("no object in ng-attrs");
         }
       }, true);
 
-      element.removeAttr('ng-attrs');
+      set_attributes = function(attr_value, attr_name) {
+        if (typeof attr_value === "boolean") {
+          name = attr_name.split('=');
+          var value = name[1] || '';
+          var name = name[0];
+          if (attr_value) {
+            attr.$set(name, value);
+          } else{
+            element.removeAttr(name);
+          }
+        }
+      };
 
+      compileElement = function(){
+        if(attr.ngModel){
+          $compile(element)(scope.$new());
+        }else{
+          $compile(element)(scope);
+        }
+      };
+
+      element.removeAttr('ng-attrs');
     }
   };
 });

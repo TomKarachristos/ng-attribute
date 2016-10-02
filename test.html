@@ -12,14 +12,14 @@
 			<input name="SECONDINPUT" 
 			       ng-model = "model" 
 			       ng-pattern = "/[0-9]/" 
-						 ng-attrs = "{ 'type=number': isCorporate}" >
+						 ng-attrs = "{'type=number': isCorporate}" 
+						 >
 			<input type="submit"
 						 id="submit"
 						 ng-click="changeState()"
 						 value="Submit" >
-						 
 			<hr>
-			input valid = {{form.input.$valid}}
+			input valid = {{form.$valid}}
 		</form>
 	</body>
 </html>
